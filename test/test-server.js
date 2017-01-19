@@ -219,5 +219,21 @@ describe('Recipes', function() {
       });
   });
 
+  xit('should throw error and gave status 400 if missing a required field upon POST', function() {
+    const newRecipe = {
+      name: 'spaghetti'
+    };
 
+    try {
+      return chai.request(app)
+        .post('/recipes')
+        .send(newRecipe)
+        .then(function(res) {
+          res.should.have.status(400); 
+      });
+    } catch(e) {
+      console.log(e.message)
+      return;
+    }
+  });
 });
